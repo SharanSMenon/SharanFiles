@@ -2,6 +2,11 @@ import psycopg2
 import smtplib
 import time
 import sys
+"""
+This was a simple calendar program that connects to a database (Postgres) and creates events.
+When an event happens, it sends an email to the user informing them about the event.
+This is no longer functional.
+"""
 try:
     conn = psycopg2.connect(dbname="calendar",user="postgres",password="kingini123",port="5432")
     cur = conn.cursor()
@@ -70,9 +75,9 @@ class calendar:
         except Exception as e:
             print(e)
     def sendEmail(self,cusid):
-        guser = "sharansajivmenon@gmail.com"
-        gpass = "SuperMan123*"
-        sent_from = 'sharansajivmenon@gmail.com'
+        guser = "Email" # Email
+        gpass = "Password" # Password
+        sent_from = 'email' # Email
         to = [str(self.customers[cusid-1][2])]
         command = "SELECT * FROM events WHERE customer_id="+str(cusid)+" AND eventdate=DATE('"+str(time.strftime("20%y-%m-%d"))+"');"
         print(command)
